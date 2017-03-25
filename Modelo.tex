@@ -1,0 +1,294 @@
+% Monografia IFG com texto em português formatado com LaTeX
+\documentclass[
+	% -- Opções da classe memoir --
+	oneside,
+    %twoside,			% Para impressão em verso e anverso, oposto a oneside
+	a4paper,			% Tamanho do papel
+	% -- Opções da classe abntex2 -- %
+	chapter=TITLE,		% Títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% Títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% Títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% Títulos de subsubseções convertidos em letras maiúsculas
+	% -- Opções do pacote babel --
+	english,			% Idioma adicional para hifenização
+	brazil				% O último idioma é o principal do documento
+	]{cls/ifg}
+
+% ---
+% Pacotes básicos
+% ---
+\usepackage[T1]{fontenc}		% Seleção de códigos de fonte
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+% --- 		
+
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}	% Para geração de dummy text
+\usepackage{xcolor,graphicx}
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref} % Páginas com as citações na bibl
+\usepackage[num,abnt-and-type=e, abnt-year-extra-label=yes,abnt-url-package=html, abnt-repeated-author-omit=yes]{abntex2cite} % Citações padrão ABNT
+\usepackage{lastpage}
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1
+		Nenhuma citação no texto.
+	\or
+		Citado na página #2.
+	\else
+		Citado #1 vezes nas páginas #2.
+	\fi}
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+% AUTOR, TÍTULO E DATA DE DEFESA %
+\autor{Yago Luiz dos Santos}
+\referenciaautor{Santos, Yago Luiz}
+
+\titulo{SIG Web Luziânia - Sistema de Informação Geográfico Web da Cidade de Luziânia-GO}
+
+\local{Luziânia}
+\data{23 de setembro de 2015}
+\orientador{Prof. Msc. Henrique Pereira de Freitas Filho}
+\instituicao{Instituto Federal de Educação, Ciência e Tecnologia de Goiás}
+\curso{Tecnologia em Análise e Desenvolvimento de Sistemas}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\preambulo{Trabalho de Conclusão de Curso apresentado à Coordenação do Curso de Tecnologia em Análise e Desenvolvimento de Sistemas do Instituto Federal de Educação, Ciência e Tecnologia de Goiás - Campus Luziânia, como requisito parcial para obtenção do título de Tecnólogo em Tecnologia em Análise e Desenvolvimento de Sistemas.}
+% ---
+
+% Alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+% Informações do PDF
+% ---
+% Configurações de aparência do PDF final
+
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={\@author},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
+		colorlinks=true,       		
+    	linkcolor=blue,          	% Cor dos links da internet
+    	citecolor=blue,        		% Cor dos links da bib
+    	filecolor=magenta,      	% Cor dos links do arquivo
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% ---
+
+% ---
+% Espaçamentos entre linhas e parágrafos
+% ---
+
+% Identa automaticamente o primeiro parágrafo do texto
+\usepackage{indentfirst} 
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+%\input{pre/fichacatalografica}
+
+
+% ---
+% Inserir errata
+% ---
+%\input{pre/errata}
+
+% ---
+% Inserir folha de aprovação
+% ---
+%\input{pre/aprovacao}
+
+
+% ---
+% Agradecimentos
+% ---
+\input{pre/agradecimentos}
+
+
+% ---
+% RESUMOS
+% ---
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+
+% resumo em português
+\input{pre/resumo}
+
+
+% resumo em inglês
+\input{pre/abstract}
+
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\input{tex/cap_I}
+\input{tex/cap_II}
+\input{tex/cap_III}
+\input{tex/cap_IV}
+\input{tex/cap_V}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{bib/bib}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%\begin{apendicesenv}
+%
+%% Imprime uma página indicando o início dos apêndices
+%\partapendices
+%
+%% ----------------------------------------------------------
+%\chapter{Quisque libero justo}
+%% ----------------------------------------------------------
+%
+%\lipsum[50]
+%
+%% ----------------------------------------------------------
+%\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+%% ----------------------------------------------------------
+%\lipsum[55-57]
+%
+%\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+%
+%% Imprime uma página indicando o início dos anexos
+%\partanexos
+%
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+\phantompart
+\printindex
+%---------------------------------------------------------------------
+
+\end{document}
