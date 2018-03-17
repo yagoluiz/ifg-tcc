@@ -1,2 +1,2 @@
 # IFG - Monografia
-Monograph presented at the Federal Institute of Goiás - Campus Luziânia, Brazil.
+Monografia apresentada no Instituto Federal de Goiás - Câmpus Luziânia, Brasil.
