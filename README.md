@@ -7,3 +7,6 @@ Para gerenciar o grande volume de informações de serviços da cidade de Luziâ
 # Artigo
 Apresentado no **11th Iberian Conference on Information Systems and Technologies (CISTI)** em 2016. 
 - [Web Geographic Information System of the Luziânia City](https://ieeexplore.ieee.org/document/7521374).
+
+# Projeto
+Consulte o [repositório](https://github.com/yagoluiz/sigluziania-web) do projeto para mais detalhes sobre a implementação.
